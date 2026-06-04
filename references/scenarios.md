@@ -4,7 +4,7 @@ The board's real power isn't one pretty diagram — it's that the output is **ed
 collaborative, and commentable inside Feishu** (unlike an HTML screenshot). That unlocks
 formats beyond a single landscape chart. This file maps common asks to a recommended
 **archetype + canvas format**, and covers the two formats the base workflow doesn't:
-**long-image (竖版长图)** and **图文混排 docs** (interleaved board + text).
+**tall mobile images (长图)** and **interleaved documents (图文混排): boards + text**.
 
 ## Scenario → recipe
 
@@ -13,14 +13,14 @@ formats beyond a single landscape chart. This file maps common asks to a recomme
 | Explain a **codebase / GitHub project** as one picture | System map + pipeline | Long-image | Read the actual code, not just the README. Group by module; wire data/control flow with native connectors. |
 | **Meeting summary** (from notes/transcript) | Card grid or swimlane (by topic/decision) | Long-image | Clear, complete, readable. One topic per card; pull decisions & owners out as chips. |
 | **Data viz from a spreadsheet** | Card grid (KPIs) + comparison + a bar built from rects | Long-image | Bars/columns are just sized `rect`s — no chart engine. Call out top items and the trend in words. |
-| **Explain a paper / tech blog** | Pipeline / system map per section | 图文混排 doc | Multiple small boards interleaved with prose; one board per concept. |
-| **Replace a PPT / share-out** | One board per "slide" | 图文混排 doc | Each board is a slide; weave the transcript text between them so the deck carries the spoken nuance. |
+| **Explain a paper / tech blog** | Pipeline / system map per section | Interleaved doc | Multiple small boards interleaved with prose; one board per concept. |
+| **Replace a PPT / share-out** | One board per "slide" | Interleaved doc | Each board is a slide; weave the transcript text between them so the deck carries the spoken nuance. |
 | **Event poster** (speakers, agenda) | Card grid (one tile per person) + title banner | Long-image, mobile | Needs real photos → see "Images" below (NOT SVG `<image>`). |
 | **Product map / architecture / roadmap** | Swimlane / system map / timeline | Landscape (default) | The base workflow. |
 
 When you pick, say which archetype + format and why in one line, then build.
 
-## Format A — Long-image (竖版长图) for phones
+## Format A — Tall mobile image (长图) for phones
 Most of the scenarios above are consumed on a phone in Feishu, scrolled top-to-bottom. A wide
 landscape board forces pinch-zoom and loses people. Build **tall and narrowish** instead.
 
@@ -57,7 +57,7 @@ for i, (head, body) in enumerate(sections):
 b.save("/tmp/summary.svg")
 ```
 
-## Format B — 图文混排 doc (interleaved boards + text)
+## Format B — Interleaved document (图文混排): boards + text
 A Feishu doc can hold **many whiteboard blocks interleaved with text** — the format that
 replaces a PPT (each board = a slide, prose between them carries what you said) or explains a
 paper/blog section by section.

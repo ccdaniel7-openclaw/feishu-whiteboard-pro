@@ -1,17 +1,17 @@
 ---
 name: feishu-whiteboard-pro
 description: >
-  Build polished, EDITABLE Feishu / Lark (飞书) whiteboards from a layout-component library —
-  swimlanes, comparison grids, pipelines, system maps, timelines, card grids — via a Python
-  generator that auto-wraps text and sizes every container so nothing clips. Use whenever the user
-  wants a Feishu/Lark whiteboard, board, 画板, infographic, product map, architecture diagram,
-  roadmap, comparison, poster, or visual explainer — especially when it should look like a finished
-  artifact, or when a previous board "looked 不好看 / too sparse". Trigger even if they just say "draw
-  this on a 飞书画板", "turn this into a board", or "make a 脉络图 / 架构图 / 对比图". Also use it for
-  board-backed tasks: visualize a codebase/GitHub repo as one picture, summarize a meeting into a
-  长图, turn spreadsheet data into a one-image data viz, explain a paper or blog as interleaved
-  boards + text (图文混排, a PPT replacement), or an event poster/海报. Owns the LAYOUT and
-  FORMAT (landscape, mobile 长图, or interleaved doc) — what generic board tools leave to chance.
+  Build polished, editable Feishu / Lark (飞书) whiteboards from a library of finished layout
+  archetypes — swimlanes, comparison grids, pipelines, system maps, timelines, and card grids —
+  rendered through a Python generator that wraps text and sizes every container so nothing clips.
+  Use this whenever the user wants a Feishu/Lark whiteboard, infographic, product map, architecture
+  diagram, roadmap, comparison, poster, or visual explainer, especially when it should read as a
+  finished artifact rather than a rough auto-layout chart, or a previous board felt too sparse. It
+  also covers board-backed tasks: visualizing a codebase as one picture,
+  summarizing a meeting as a tall mobile image, turning spreadsheet data into a single-image view,
+  explaining a paper or blog as interleaved boards and text, or building an event poster. The skill
+  owns both the layout and the format — landscape, tall mobile image, or interleaved document — the
+  part generic board tools leave to chance. Chinese triggers: 飞书画板, 脉络图, 架构图, 对比图, 长图, 海报.
 ---
 
 # Feishu Whiteboard Pro
@@ -49,10 +49,10 @@ authenticated, walk the user through `lark-cli auth login` (device-flow: show th
 ### 1. Understand the content, then pick a format AND an archetype
 First decide the **format**, because it changes every size you'll use:
 - **Landscape** (~1680 wide) — the default for product maps, architectures, dashboards viewed on a laptop.
-- **Long-image / 长图** (~1080–1200 wide, tall) — for anything consumed on a phone: meeting summaries,
-  data viz, posters, codebase explainers. Bigger type floors (body ≥20px). See `references/scenarios.md`.
-- **图文混排 doc** — many small boards interleaved with text in one doc; replaces a PPT, explains a
-  paper/blog. See `references/scenarios.md`.
+- **Tall mobile image** (长图, ~1080–1200 wide and tall) — for anything read on a phone: meeting
+  summaries, data views, posters, codebase explainers. Use bigger type floors (body ≥20px). See `references/scenarios.md`.
+- **Interleaved document** (图文混排) — many small boards interleaved with text in one doc; replaces a
+  slide deck, or explains a paper or blog section by section. See `references/scenarios.md`.
 
 If the ask matches a known scenario (codebase viz, meeting summary, data viz, paper/blog explainer,
 poster), `references/scenarios.md` maps it straight to a format + archetype. Then open
@@ -117,9 +117,9 @@ flat color. Set that expectation rather than promising a look the board can't ho
 
 ## Files
 - `references/components.md` — **the layout library.** Archetypes + coordinate recipes. Read this to compose.
-- `references/scenarios.md` — **scenario → format + archetype map**, plus how to build long-images (长图),
-  图文混排 docs (interleaved boards + text), and how to handle photos/images. Read when the ask is a
-  real task (codebase viz, meeting summary, data viz, paper/blog, poster) rather than a bare diagram.
+- `references/scenarios.md` — **scenario → format + archetype map**, plus how to build tall mobile
+  images (长图), interleaved documents (图文混排), and how to handle photos/images. Read when the ask is
+  a real task (codebase viz, meeting summary, data view, paper/blog, poster) rather than a bare diagram.
 - `references/rules.md` — the medium's hard limits and the build/verify commands. Read before building.
 - `references/palettes.md` — curated solid palettes (flattened for the medium).
 - `scripts/board.py` — the generator library. Import it.
