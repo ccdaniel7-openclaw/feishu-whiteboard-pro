@@ -40,12 +40,15 @@ for i, c in enumerate(clients):
 # gateway (center)
 gw_w = 260; gw_x = (W-gw_w)/2
 box(gw_x, cy2, gw_w, 60, "API Gateway", "#1487C9", sub="auth · routing · rate-limit")
-# services
-svcs = ["Order","Inventory","Payment","Notification"]
-sw = 300; gap = (inner - len(svcs)*sw)/(len(svcs)-1)
-sx = [P + i*(sw+gap) for i in range(len(svcs))]
+# services row = 3 internal services + 1 external (PSP), evenly spaced so nothing collides
+svcs = ["Order Service", "Inventory Service", "Payment Service"]
+ncell = len(svcs) + 1                      # reserve the 4th slot for the external gateway
+sw = 300; gap = (inner - ncell*sw)/(ncell-1)
+sx = [P + i*(sw+gap) for i in range(ncell)]
 for i, s in enumerate(svcs):
-    box(sx[i], cy3, sw, 70, s+" Service", "#13877A")
+    box(sx[i], cy3, sw, 70, s, "#13877A")
+# external PSP occupies the 4th slot — gray = outside our system
+box(sx[3], cy3, sw, 70, "3rd-party PSP", "#7E8AA0", sub="external gateway")
 # data
 data = [("MySQL","orders"),("Redis","cache"),("Kafka","events")]
 dw = 360; dgap = (inner - len(data)*dw)/(len(data)-1)
@@ -59,22 +62,20 @@ for i,(d,role) in enumerate(data):
 for i in range(len(clients)):
     x = cx0+i*(cw+30)+cw/2
     b.polyline([(x, cy1+60), (x, cy2-16), (gw_x+gw_w/2, cy2-16), (gw_x+gw_w/2, cy2)], LINK)
-# gateway -> services (fan out)
+# gateway -> internal services only (fan out)
 for i in range(len(svcs)):
     cxx = sx[i]+sw/2
     b.polyline([(gw_x+gw_w/2, cy2+60), (gw_x+gw_w/2, cy3-18), (cxx, cy3-18), (cxx, cy3)], LINK)
-# services -> data
+# internal services -> data
 for i in range(len(svcs)):
     cxx = sx[i]+sw/2
     b.arrow(cxx, cy3+70, cxx, 590, "#0EA5C4")
-# dependency notes (dashed-feel via colored connectors + chips)
+# dependency notes (colored connectors + chips)
 b.polyline([(sx[0]+sw, cy3+35), (sx[1], cy3+35)], "#D11F44")
 b.rect(sx[0]+sw-6, cy3+18, text_w("checks stock",15)+18, 30, "#FBEAEA", rx=7, stroke="#F0C4C4", sw=1.1)
 b.text(sx[0]+sw+3+ (text_w("checks stock",15)+6)/2, cy3+38, "checks stock", 15, "#9F1239", "regular", "middle")
-# external PSP
-psp_x = sx[2]+sw/2
-box(W-P-220, cy3, 220, 70, "3rd-party PSP", "#7E8AA0", sub="external gateway")
-b.polyline([(sx[2]+sw, cy3+35), (W-P-220, cy3+35)], "#C2410C")
+# Payment -> external PSP (adjacent slots, clean horizontal hop)
+b.arrow(sx[2]+sw, cy3+35, sx[3], cy3+35, "#C2410C")
 
 b.save("/tmp/system_map.svg")
 print("wrote /tmp/system_map.svg")
