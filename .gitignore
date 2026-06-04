@@ -4,3 +4,7 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# but keep the committed archetype previews
+!examples/gallery/
+!examples/gallery/*.png
